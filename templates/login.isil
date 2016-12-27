@@ -1,0 +1,78 @@
+<div class="loginContainer">
+    <div class="loginTop">
+        <h4>Seja Bem Vindo(a)!</h4>
+        <p>No momento n&atilde;o estamos aceitando novos usu&aacute;rios.</p>
+    </div>
+    <div class="clearfix"></div>
+    <div class="loginForm">
+        <div class="formLabel">Email:</div>
+        <div class="formInput">
+            <input type="text" class="input" id="formUser" placeholder="E-mail" maxlength="254">
+        </div>
+        <div class="clearfix"></div>
+        <input type="hidden" id="country_code" value="+55"/>
+        <div class="phone_num">O seu numero de celular com DDD (ex: 91900000000):</div>
+        <div class="formInput">
+            <input type="text" class="input" id="phone_num" maxlength="11">
+            <input type="hidden" id="code" name="code" value=""/>
+            <input type="hidden" id="csrf_nonce" name="csrf_nonce" value=""/>
+        </div>
+        <div class="clearfix"></div>
+        <div class="formBtn"><a id="formSend">Conectar</a></div>
+    </div>
+</div>
+
+<script>
+    // initialize Account Kit with CSRF protection
+    AccountKit_OnInteractive = function () {
+        AccountKit.init({
+            appId: "{{appId}}",
+            state: "{{csrf}}",
+            version: "{{version}}"
+        });
+    };
+
+    function getInputs() {
+        var form = {};
+        form.email_address = document.getElementById("email").value;
+        form.country_code = document.getElementById("country_code").value;
+        form.ph_num = document.getElementById("phone_num").value;
+        return form;
+    }
+
+    function loginCallback(response) {
+        if (response.status === "PARTIALLY_AUTHENTICATED") {
+            document.getElementById("code").value = response.code;
+            document.getElementById("csrf_nonce").value = response.state;
+            var form = getInputs();
+            var data = $.param(form);
+            $.ajax({
+                type: "POST",
+                url: "https://auth-af4d29b6.rhcloud.com/getcode",
+                data: "init",
+                dataType: "application/x-www-form-urlencoded; charset=UTF-8",
+                success: function (response) {
+                    console.log(response)
+                },
+
+                error: function (e) {
+                    alert("Ocorreu um erro!");
+                }
+            });
+
+        }
+        else if (response.status === "NOT_AUTHENTICATED") {
+            // handle authentication failure
+        }
+        else if (response.status === "BAD_PARAMS") {
+            // handle bad parameters
+        }
+    }
+
+    function loginBtn() {
+        var form = getInputs();
+        AccountKit.login('PHONE',
+            form, // will use default values if this is not specified
+            loginCallback);
+    }
+</script>
