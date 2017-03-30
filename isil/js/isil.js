@@ -87,7 +87,7 @@ function tString(t) {
 function loading() {
     document.getElementById("loading").remove();
     var loadingImage = new Image;
-    loadingImage.src = 'https://jamilservicos.github.io/assets/isil/img/loadingSprite.png';
+    loadingImage.src = 'https://isil.sr-1.tk/img/loadingSprite.png';
     loadingImage.onload = function (event) {
         var dataSpritesLoading = {
             "images": [loadingImage],
@@ -151,9 +151,9 @@ function loading() {
         stage.update();
         //
         manifest = [
-            {src: "https://jamilservicos.github.io/assets/isil/img/background-loading.jpg", id: "background-loading"},
-            {src: "https://jamilservicos.github.io/assets/isil/img/background-login.jpg", id: "background-login"},
-            {src: "https://jamilservicos.github.io/assets/isil/css/login.css", id: "css-login"},
+            {src: "https://isil.sr-1.tk/img/background-loading.jpg", id: "background-loading"},
+            {src: "https://isil.sr-1.tk/img/background-login.jpg", id: "background-login"},
+            {src: "https://isil.sr-1.tk/css/login.css", id: "css-login"},
             {src: "https://cdn.socket.io/socket.io-1.4.5.js", id: "socket.io"},
             {src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js", id: "jquery"}
         ];
