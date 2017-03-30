@@ -154,7 +154,7 @@ function loading() {
             {src: "https://assets.sr-1.tk/img/background-loading.jpg", id: "background-loading"},
             {src: "https://assets.sr-1.tk/img/background-login.jpg", id: "background-login"},
             {src: "https://assets.sr-1.tk/css/login.css", id: "css-login"},
-            {src: "https://cdn-orig.socket.io/socket.io-1.4.5.js", id: "socket.io"},
+            {src: "https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js", id: "socket.io"},
             {src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js", id: "jquery"}
         ];
         var preload = new createjs.LoadQueue(true);
